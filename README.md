@@ -13,11 +13,17 @@ npm i [-g] ase2stylus
 #### CLI
 
 ```bash
-ase2stylus ./path/to/file.ase
-#or
-ase2stylus ./path/to/file.ase --filter=prefix\* #any glob compatible string
-#also works with stdin
-cat ./path/to/file.ase | ase2stylus
+ase2stylus --help
+
+  Usage: ase2stylus [options]
+
+  Options:
+
+    -h, --help             output usage information
+    -V, --version          output the version number
+    -i, --input [input]    path to ase file (defaults to stdin)
+    -o, --output [output]  path to save rendered stylus (defaults to stout)
+    -f, --filter [filter]  optional swatch name filter, E.g 'myPrefix*' (minimatch)
 ```
 
 Will create the following stylus file:
@@ -30,25 +36,28 @@ swatchName = #FA44AA
 
 ```javascript
 var ase2stylus = require('ase2stylus');
+var fs = require('fs');
 
-var renderedStylus = ase2stylus.render("./path/to/file.ase");
+var aseFileContent = fs.readFileSync("/path/to/file.ase"); //notice not utf-8, raw
+
+var renderedStylus = ase2stylus.render(aseFileContent);
 
 //or save directly
 
-ase2stylus.save("./path/to/file.ase", "./path/to/target.styl");
+ase2stylus.save(aseFileContent, "./path/to/target.styl");
 
 //save and render optionally excepts a filter function for the swatch name
-ase2stylus.render("./path/to/file.ase", function(colorName){
+ase2stylus.render(aseFileContent, function(colorName){
   return colorName.startsWith("myPrefix");
 });
 ```
 
 ### Methods
 
-#### render(asePathOrBuffer, optionalFilterStringOrFunction)
+#### render(aseFileContent, optionalFilterStringOrFunction)
 
-##### asePathOrBuffer
-string path or buffer to ase file
+##### aseFileContent
+ase file raw (not utf-8 string) content
 
 ##### optionalFilterStringOrFunction
 either [minimatch](https://www.npmjs.org/package/minimatch) compatible string or a predicate function
@@ -66,9 +75,9 @@ function(colorName){
 }
 ```
 
-#### save(asePathOrBuffer, stylusOutputPath, optionalFilterStringOrFunction)
+#### save(aseFileContent, stylusOutputPath, optionalFilterStringOrFunction)
 
-##### asePathOrBuffer
+##### aseFileContent
 
 As in render method
 
