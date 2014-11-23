@@ -62,11 +62,9 @@ ase file raw (not utf-8 string) content
 ##### optionalFilterStringOrFunction
 either [minimatch](https://www.npmjs.org/package/minimatch) compatible string or a predicate function
 
-E.g
+E.g ```"myPrefix*"```
 
-```"myPrefix*"```
-
-Or
+Or as a predicate function:
 
 ```javascript
 function(colorName){
