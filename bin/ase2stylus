@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+var libz = require("../lib");
+var program = require('commander');
+var path = require("path");
+var fs = require("fs");
+
+var wrapUp = function(aseFile){
+  if (program.output) {
+    libz.save(aseFile, path.join(process.cwd(), program.output), program.filter);
+  } else {
+    process.stdout.write(libz.render(aseFile, program.filter));
+  }
+};
+
+program
+  .version(require('../package.json').version)
+  .option("-i, --input [input]", "path to ase file (defaults to stdin)")
+  .option("-o, --output [output]", "path to save rendered stylus (defaults to stout)")
+  .option("-f, --filter [filter]", "optional swatch name filter, E.g 'myPrefix*' (minimatch)");
+
+program.parse(process.argv);
+
+if (!program.input){
+  if (process.stdin.isTTY){
+    return program.help();
+  } else {
+    process.stdin.resume();
+    process.stdin.on('data', function(data) {
+      wrapUp(data);
+    });
+  }
+} else {
+  wrapUp(fs.readFileSync(path.join(process.cwd(), program.input)));
+}
+

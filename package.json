@@ -4,7 +4,7 @@
   "description": "Convert ase (Adobe Swatch Exchange) to stylus files with color variables",
   "main": "index.js",
   "scripts": {
-    "test": "test.js"
+    "test": "./node_modules/.bin/mocha -R ./tests"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,13 @@
     "url": "https://github.com/erikzaadi/ase2stylus/issues"
   },
   "homepage": "https://github.com/erikzaadi/ase2stylus",
+  "bin": {
+    "ase2stylus": "bin/ase2stylus"
+  },
   "dependencies": {
     "adobe-swatch-exchange": "0.0.0",
+    "commander": "^2.5.0",
+    "minimatch": "^1.0.0",
     "mustache": "^0.8.2",
     "underscore": "^1.7.0"
   },
