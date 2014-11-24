@@ -48,7 +48,7 @@ ase2stylus.save(aseFileContent, "./path/to/target.styl");
 
 //save and render optionally excepts a filter function for the swatch name
 ase2stylus.render(aseFileContent, function(colorName){
-  return colorName.startsWith("myPrefix");
+  return colorName.indexOf("myPrefix") == 0;
 });
 ```
 
