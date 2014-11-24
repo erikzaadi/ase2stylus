@@ -1,6 +1,6 @@
 {
   "name": "ase2stylus",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Convert ase (Adobe Swatch Exchange) to stylus files with color variables",
   "main": "index.js",
   "scripts": {
