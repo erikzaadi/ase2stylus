@@ -6,7 +6,7 @@ var fs = require("fs");
 
 var wrapUp = function(aseFile){
   if (program.output) {
-    libz.save(aseFile, path.join(process.cwd(), program.output), program.filter);
+    libz.save(aseFile, path.resolve(program.output), program.filter);
   } else {
     process.stdout.write(libz.render(aseFile, program.filter));
   }
@@ -30,6 +30,6 @@ if (!program.input){
     });
   }
 } else {
-  wrapUp(fs.readFileSync(path.join(process.cwd(), program.input)));
+  wrapUp(fs.readFileSync(path.resolve(program.input)));
 }
 
