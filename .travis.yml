@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '0.11'
+- '0.10'
+deploy:
+  provider: npm
+  email: erik.zaadi@gmail.com
+  api_key:
+    secure: JDIdy8qqIRUV54aoe7TJSN/OgK1MJCL+bJLrSN929f2YYA4jw+wJXo7CxmXil+b1lHxyKsQ8ojYlzj/sOLJ5CZDuNr+9zFqQEQ5m0Z1NihBwO44fqa1dObkZFELVz0WSMSruCN+57CXsDKIT3T2PDMYKhMVMA2srvcEhS6kPik4=
+  on:
+    tags: true
+    repo: erikzaadi/ase2stylus

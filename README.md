@@ -1,5 +1,7 @@
 ## ase2stylus
 
+[![Build Status](https://travis-ci.org/erikzaadi/ase2stylus.svg)](https://travis-ci.org/erikzaadi/ase2stylus)
+
 ### Convert ase (Adobe Swatch Exchange) to stylus files with color variables
 
 #### Installation

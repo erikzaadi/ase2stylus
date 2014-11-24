@@ -1,3 +1,1 @@
-Refactor for testability
-Add tests
 Add option for custom mustache template
